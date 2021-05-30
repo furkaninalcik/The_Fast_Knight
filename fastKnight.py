@@ -51,23 +51,30 @@ def findDistance(start,target):
 	if((target-start).x + (target-start).y < 5):
 		return 0
 	if(start.x < target.x and start.y < target.y and (target-start).x < (target-start).y ):#region1
+		print("region1")
 		start = moveStart(start,ruu)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y < target.y and (target-start).x > (target-start).y ):#region2
+		print("region2")
 		start = moveStart(start,rru)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y > target.y and (target-start).x > (target-start).y ):#region3
+		print("region3")
 		start = moveStart(start,rrd)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y > target.y and (target-start).x < (target-start).y ):#region4
+		print("region4")
 		start = moveStart(start,rrd)
 		return 1 + findDistance(start,target)
 	else:
+		if(start.x > target.x):
+			print("warning")
+		print("test")
 		start = moveStart(start,ruu)
 		return 1 + findDistance(start,target)
 		
-start = Position(1,1)
-target = Position(70,70)
+start = Position(0,0)
+target = Position(200,20)
 
 print("Result:")
 print(findDistance(start,target))
