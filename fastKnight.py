@@ -1,3 +1,4 @@
+import math
 class Position:
 	def __init__(self, x, y):
 		self.x = x
@@ -45,11 +46,17 @@ def moveStart(start, step):
 	start.y = start.y + step[1]
 	return start
 
-
+def formula(dx,dy):
+	print(dx)
+	print(dy)
+	a = int(round(max(dx/2,dy/2,(dx+dy)/3)))
+	return a + ((a+dx+dy)%2)
+	
+	
 def findDistance(start,target):
 
 	if((target-start).x + (target-start).y < 5):
-		return 0
+		return 2
 	if(start.x < target.x and start.y < target.y and (target-start).x < (target-start).y ):#region1
 		print("region1")
 		start = moveStart(start,ruu)
@@ -74,7 +81,14 @@ def findDistance(start,target):
 		return 1 + findDistance(start,target)
 		
 start = Position(0,0)
-target = Position(200,20)
+target = Position(280,714)
 
 print("Result:")
 print(findDistance(start,target))
+print("Result by Formula:")
+vector = target-start
+print("TEST")
+print(vector.x,vector.y)
+#print(formula(vector.x,vector.y))
+
+
