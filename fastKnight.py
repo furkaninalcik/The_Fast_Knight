@@ -47,48 +47,54 @@ def moveStart(start, step):
 	return start
 
 def formula(dx,dy):
-	print(dx)
-	print(dy)
+	#print(dx)
+	#print(dy)
 	a = int(round(max(dx/2,dy/2,(dx+dy)/3)))
 	return a + ((a+dx+dy)%2)
 	
 	
 def findDistance(start,target):
 
-	if((target-start).x + (target-start).y < 5):
+	if((target-start).x + (target-start).y < 5):#wrong!
 		return 2
 	if(start.x < target.x and start.y < target.y and (target-start).x < (target-start).y ):#region1
-		print("region1")
+		#print("region1")
 		start = moveStart(start,ruu)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y < target.y and (target-start).x > (target-start).y ):#region2
-		print("region2")
+		#print("region2")
 		start = moveStart(start,rru)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y > target.y and (target-start).x > (target-start).y ):#region3
-		print("region3")
+		#print("region3")
 		start = moveStart(start,rrd)
 		return 1 + findDistance(start,target)
 	if(start.x < target.x and start.y > target.y and (target-start).x < (target-start).y ):#region4
 		print("region4")
-		start = moveStart(start,rrd)
+		start = moveStart(start,rdd)
 		return 1 + findDistance(start,target)
 	else:
-		if(start.x > target.x):
-			print("warning")
-		print("test")
-		start = moveStart(start,ruu)
+		if(start.x >= target.x):
+			#print("warning")
+			start = moveStart(start,luu)
+			return 1 + findDistance(start,target)
+		#print("start")
+		#print(start.x , start.y)
+		#print("target")
+		#print(target.x , target.y)
+		start = moveStart(start,rru)
 		return 1 + findDistance(start,target)
 		
 start = Position(0,0)
-target = Position(280,714)
-
+start2 = Position(0,0)
+target = Position(241,1210)
+target2 = Position(241,1210)
 print("Result:")
 print(findDistance(start,target))
 print("Result by Formula:")
-vector = target-start
-print("TEST")
-print(vector.x,vector.y)
-#print(formula(vector.x,vector.y))
+vector = target2-start2
+#print("TEST")
+#print(vector.x,vector.y)
+print(formula(vector.x,vector.y))
 
 
